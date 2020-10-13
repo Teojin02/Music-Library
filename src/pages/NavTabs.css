@@ -1,0 +1,12 @@
+*{
+    margin: 0px;
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+#Header {
+    color: red;
+    font-family: 'Merriweather', serif;
+}
