@@ -1,8 +1,8 @@
 import React from 'react';
-
+import "../style/SearchBar.css"
 class Searchbar extends React.Component {
     state = {
-        term: 'Default text'
+        term: ''
     };
     handleChange = (event) => {
         this.setState({
@@ -19,7 +19,8 @@ class Searchbar extends React.Component {
             <div className='search-bar ui segment'>
                 <form onSubmit={this.handleSubmit} className='ui form'>
                     <div className='field'>
-                        <label htmlFor="video-search">Video Search</label>
+                        <button onClick="btn"> Search</button>
+                        <label htmlFor="video-search"></label>
                         <input onChange={this.handleChange} name='video-search' type="text" value={this.state.term}/>
                     </div>
                 </form>
