@@ -1,79 +1,47 @@
 
-import React, { Component } from "react";
-import "./style/Search.css"
+import React from "react";
 
-let FakeServerData = {
-user: {
-  name: "Teojin",
-  playlists: [
-    {
-      name:"My favorites",
-      songs: ["Beat it", "Bad", "smooth criminal"]
-    },
-    { name:"My food",
-      songs: ["ding dong", "water", "table"]},
-    { name:"My nae",
-      songs: ["trick", "snoot", "fan"]},
-  ]
-}
-}
-class Songs extends Component {
-render () {
-  return (
-    <div>
-      <h1>
-        {this.props.playlists && this.props.playlists.length}
-      </h1>
-      <ul>
-        <li>Song 1</li>
-        <li>Song 2</li>
-        <li>Song 3</li>
-         
-      </ul>
-    </div>
-  )
-}
-}
+import SearchBar from './pages/Searchbar';
+import youtube from '../API/youtube';
+import VideoList from './pages/VideoList';
+import VideoDetail from './pages/VideoDetail';
 
-class Find extends Component {
-  render() {
-    return (
-       <input type="text" placeholder="Search.."/>
-    )
-  }
+class Search extends React.Component {
+    state = {
+        videos: [],
+        selectedVideo: null
+    }
+    handleSubmit = async (termFromSearchBar) => {
+        const response = await youtube.get('/search', {
+            params: {
+                q: termFromSearchBar
+            }
+        })
+        this.setState({
+            videos: response.data.items
+        })
+    };
+    handleVideoSelect = (video) => {
+        this.setState({selectedVideo: video})
+    }
+
+    render() {
+        return (
+            <div className='ui container' style={{marginTop: '1em'}}>
+                <SearchBar handleFormSubmit={this.handleSubmit}/>
+                <div className='ui grid'>
+                    <div className="ui row">
+                        <div className="eleven wide column">
+                            <VideoDetail video={this.state.selectedVideo}/>
+                        </div>
+                        <div className="five wide column">
+                            <VideoList handleVideoSelect={this.handleVideoSelect} videos={this.state.videos}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
-
-
-class Search extends Component {
-  constructor() {
-    super ();
-    this.state = {ServerData: {}}
-  }
-  componentDidMount() {
-    setTimeout (() => {
-      this.setState({ServerData: FakeServerData});
-    }, 1000);
-  }
-  render() {
-    return (
-      <div className="Search">
-        {this.state.ServerData.user ?
-        <div>
-        <h1>
-        {this.state.ServerData.user.name}'s Playlist
-        </h1>
-
-       <Find/>
-       <Songs playlists={this.state.ServerData.user && 
-                        this.state.ServerData.playlists}/>
-       <Songs/>
-       <Songs/>
-       </div> : <h1>Loading...</h1>
-  } 
-      </div>
-    );
-  }
-}
-
 
 export default Search;
