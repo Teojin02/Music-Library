@@ -5,6 +5,8 @@ import Home from "./pages/components/Home";
 import Search from "./pages/components/Search";
 import Favorite from "./pages/components/Favorite";
 
+
+
 function App() {
   return (
     <Router>
