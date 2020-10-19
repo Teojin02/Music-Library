@@ -16,8 +16,7 @@ function NavTabs () {
       <Navbar>
     <Nav className="mr-auto">
        <Link to= "/" className={location.pathname === "/" ? "nav-link active" : "nav-link"}>Home</Link>
-       <Link to= "/Search" className = {location.pathname === "/Search" ? "nav-link active" : "nav-link"}>Search</Link>
-       <Link to= "/Favorite" className = {location.pathname === "/Favorite" ? "nav-link active" : "nav-link"}>Favorite</Link>
+       <Link to= "/Favorite" className = {location.pathname === "/Favorite" ? "nav-link active" : "nav-link"}>Notes</Link>
     </Nav>
   </Navbar>
 </Jumbotron>

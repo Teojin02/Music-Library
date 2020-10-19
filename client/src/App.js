@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from "./pages/NavTabs";
-import Home from "./pages/components/Home";
 import Search from "./pages/components/Search";
-import Favorite from "./pages/components/Favorite";
+import Notes from "./pages/components/Notes";
 
 
 
@@ -12,9 +11,8 @@ function App() {
     <Router>
       <div>
         <NavTabs />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/Search" component={Search} />
-        <Route exact path="/Favorite" component={Favorite} />
+        <Route exact path="/" component={Search} />
+        <Route exact path="/Favorite" component={Notes} />
       </div>
     </Router>
   );
